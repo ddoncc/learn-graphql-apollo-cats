@@ -5,6 +5,7 @@ module.exports = gql`
         id: ID!
         name: String!
         colour: String!
+        date: String!
     }
 
     type Query {
@@ -12,6 +13,7 @@ module.exports = gql`
         cats(
             name: String
             colour: String
+            date: String
         ): [Cat!]!
         cat(
             id: ID!
