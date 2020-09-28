@@ -14,11 +14,23 @@ module.exports = {
         hello: () => {
             return 'Hello';
         },
+
         cats: (_, req) => {
             return Cat.find(req);
         },
+
         cat: (_, req) => {
             return Cat.findOne({_id:req.id});
+        },
+
+        users: (_, req) => {
+            if (req.adminUser == process.env.ADMIN_USER && req.adminPass == process.env.ADMIN_PASS) {
+                if (!req.username && !req.id) return User.find();
+                if (req.id) return User.find({_id: req.id});
+                if (req.username) return User.find({username: {$regex: `^${req.username}$`}});
+            } 
+
+            return [];
         }
     },
 

@@ -8,6 +8,12 @@ module.exports = gql`
         date: String!
     }
 
+    type User {
+        id: ID!
+        username: String!
+        date: String!
+    }
+
     type RegisterLoginResponse {
         success: Boolean!
         msg: String!
@@ -28,16 +34,27 @@ module.exports = gql`
         deleted: Boolean
     }
 
+
     type Query {
         hello: String!
+
         cats(
             name: String
             colour: String
             date: String
         ): [Cat!]!
+
         cat(
             id: ID!
         ): Cat!
+
+        users(
+            adminUser: String!
+            adminPass: String!
+
+            id: ID
+            username: String
+        ): [User]
     },
 
     type Mutation{
