@@ -8,6 +8,26 @@ module.exports = gql`
         date: String!
     }
 
+    type RegisterLoginResponse {
+        success: Boolean!
+        msg: String!
+        id: ID
+        username: String
+        token: String
+    }
+
+    type CreateResponse {
+        authSuccess: Boolean!
+        msg: String!
+        cat: Cat
+    }
+
+    type DeleteResponse {
+        authSuccess: Boolean!
+        msg: String!
+        deleted: Boolean
+    }
+
     type Query {
         hello: String!
         cats(
@@ -21,12 +41,26 @@ module.exports = gql`
     },
 
     type Mutation{
+        register(
+            username: String!
+            password: String!
+        ): RegisterLoginResponse!
+
+        login(
+            username: String!
+            password: String!
+        ): RegisterLoginResponse
+
         createCat(
+            token: String!
             name: String!
             colour: String!
-        ): Cat!
+        ): CreateResponse
+
         deleteCat(
+            token: String!
             id: ID!
-        ): Boolean!
+        ): DeleteResponse
+
     }
 `;
