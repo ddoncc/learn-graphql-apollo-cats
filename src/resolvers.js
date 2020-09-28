@@ -42,7 +42,7 @@ module.exports = {
 
             newUser.save();
 
-            const token = jwt.sign({ id: newUser._id, username: req.username }, process.env.JWT_SECRET, { expiresIn: "1h" });
+            const token = jwt.sign({ id: newUser._id, username: req.username }, process.env.JWT_SECRET, { expiresIn: process.env.TOKEN_EXP });
 
             return {
                 success: true,
@@ -73,7 +73,7 @@ module.exports = {
                 msg: "Invalid Username or Password"
             }
 
-            const token = jwt.sign({ id: user._id, username: req.username }, process.env.JWT_SECRET, { expiresIn: "1h" });
+            const token = jwt.sign({ id: user._id, username: req.username }, process.env.JWT_SECRET, { expiresIn: process.env.TOKEN_EXP });
 
             return {
                 success: true,
