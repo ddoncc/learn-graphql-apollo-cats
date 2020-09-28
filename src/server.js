@@ -13,7 +13,8 @@ const startServer = async () => {
     const server = new ApolloServer({
         typeDefs,
         resolvers,
-        playground: true
+        playground: process.env.PLAYGROUND,
+        introspection: process.env.PLAYGROUND
     });
       
     server.applyMiddleware({ app });
